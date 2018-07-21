@@ -1,5 +1,6 @@
 <template>
-  <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
+  <div class="login">
+  <Form ref="formInline" :model="formInline" :rules="ruleInline" inline class="login_form">
     <FormItem prop="user">
       <Input type="text" v-model="formInline.user" placeholder="Username">
       <Icon type="ios-person-outline" slot="prepend"></Icon>
@@ -11,9 +12,10 @@
       </Input>
     </FormItem>
     <FormItem>
-      <Button type="primary" @click="handleSubmit('formInline')">Signin</Button>
+      <Button type="primary" @click="handleSubmit('formInline')">登陸</Button>
     </FormItem>
   </Form>
+  </div>
 </template>
 
 <script>
@@ -28,20 +30,20 @@ export default {
         user: [
           {
             required: true,
-            message: "Please fill in the user name",
+            message: "請輸入賬號",
             trigger: "blur"
           }
         ],
         password: [
           {
             required: true,
-            message: "Please fill in the password.",
+            message: "請輸入密碼",
             trigger: "blur"
           },
           {
             type: "string",
             min: 6,
-            message: "The password length cannot be less than 6 bits",
+            message: "密碼長度不能少於6位",
             trigger: "blur"
           }
         ]
@@ -52,6 +54,7 @@ export default {
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
+          this.$router.push('/')
           this.$Message.success("Success!");
         } else {
           this.$Message.error("Fail!");
@@ -63,4 +66,15 @@ export default {
 </script>
 
 <style scoped>
+  .login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url("http://img95.699pic.com/photo/50053/9342.jpg_wh300.jpg");
+    background-size: 100% 100%;
+  }
+  .login_form{
+
+  }
 </style>
