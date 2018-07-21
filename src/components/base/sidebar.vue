@@ -25,123 +25,135 @@ export default {
       theme3: "dark",
       navbarIndex: "1",
       menu: [
-        {
-          id: 1,
-          name: "消息推送1",
-          path: "",
-          type: "ios-home",
-          childen: [
-            {
-              id: 5,
-              name: "用户管理1",
-              path: "/msgsend",
-              type: ""
-            }
-          ]
-        },
-        {
-          id: 3,
-          name: "数据模型",
-          path: "/userManage",
-          type: "ios-keypad",
-          childen: [
-            {
-              id: 6,
-              name: "数据模型列表",
-              path: "/dataModelList",
-              type: ""
-            }
-          ]
-        },
-        {
-          id: 4,
-          name: "用户管理3",
-          path: "/userManage",
-          type: "social-snapchat-outline",
-          childen: [
-            {
-              id: 7,
-              name: "用户管理5",
-              path: "/tobaccobase",
-              type: ""
-            }
-          ]
-        },
-        {
-          id: 5,
-          name: "用户管理3",
-          path: "/userManage",
-          type: "ios-gear-outline",
-          childen: [
-            {
-              id: 8,
-              name: "用户管理7",
-              path: "/login",
-              type: ""
-            }
-          ]
-        }
+        // {
+        //   id: 1,
+        //   name: "消息推送1",
+        //   path: "",
+        //   type: "ios-home",
+        //   childen: [
+        //     {
+        //       id: 5,
+        //       name: "用户管理1",
+        //       path: "/msgsend",
+        //       type: ""
+        //     }
+        //   ]
+        // },
+        // {
+        //   id: 3,
+        //   name: "数据模型",
+        //   path: "/userManage",
+        //   type: "ios-keypad",
+        //   childen: [
+        //     {
+        //       id: 6,
+        //       name: "数据模型列表",
+        //       path: "/dataModelList",
+        //       type: ""
+        //     }
+        //   ]
+        // },
+        // {
+        //   id: 4,
+        //   name: "用户管理3",
+        //   path: "/userManage",
+        //   type: "social-snapchat-outline",
+        //   childen: [
+        //     {
+        //       id: 7,
+        //       name: "用户管理5",
+        //       path: "/tobaccobase",
+        //       type: ""
+        //     }
+        //   ]
+        // },
+        // {
+        //   id: 5,
+        //   name: "用户管理3",
+        //   path: "/userManage",
+        //   type: "ios-gear-outline",
+        //   childen: [
+        //     {
+        //       id: 8,
+        //       name: "用户管理7",
+        //       path: "/login",
+        //       type: ""
+        //     }
+        //   ]
+        // }
       ]
     };
   },
   mounted() {
-    this.bus.$on("toChangeTitle", function(title) {
-      console.log(123456);
-      this.menu = title;
-      console.log("mounted", this.menu);
-    });
+
   },
   computed() {
-    return this.menu;
+
   },
   created() {
-    this.bus.$on("toChangeTitle", function(title) {
-      console.log("222221111121122", title);
-      this.menu = title;
-      console.log("333322222233331menu", this.menu);
+    var self = this;
+    this.bus.$on("toChangeTitle", function(id) {
+      console.log('idaaaaa',id);
+      if (id === '') {
+        self.menu = [
+          {
+            id: 1,
+            name: "速度杠杠的",
+            path: "",
+            type: "ios-home",
+            childen: [
+              {
+                id: 5,
+                name: "速度杠杠的",
+                path: "/msgsend",
+                type: ""
+              }
+            ]
+          }
+        ];
+      }
+      if (id === "1") {
+        self.menu = [
+          {
+            id: 1,
+            name: "速度杠杠的",
+            path: "",
+            type: "ios-home",
+            childen: [
+              {
+                id: 5,
+                name: "速度杠杠的",
+                path: "/msgsend",
+                type: ""
+              }
+            ]
+          }
+        ];
+      }
+      if (id === "2") {
+        self.menu = [
+          {
+            id: 2,
+            name: "消息推送2",
+            path: "",
+            type: "ios-home",
+            childen: [
+              {
+                id: 6,
+                name: "用户管理2",
+                path: "/msgsend",
+                type: ""
+              }
+            ]
+          }
+        ];
+      }
     });
-    console.log("2222");
-    // if (this.navbarIndex === "1") {
-    //   this.menu = [
-    //     {
-    //       id: 1,
-    //       name: "速度杠杠的",
-    //       path: "",
-    //       type: "ios-home",
-    //       childen: [
-    //         {
-    //           id: 5,
-    //           name: "速度杠杠的",
-    //           path: "/msgsend",
-    //           type: ""
-    //         }
-    //       ]
-    //     }
-    //   ];
-    // }
-    // if (this.navbarIndex === "2") {
-    //   this.menu = [
-    //     {
-    //       id: 2,
-    //       name: "消息推送2",
-    //       path: "",
-    //       type: "ios-home",
-    //       childen: [
-    //         {
-    //           id: 6,
-    //           name: "用户管理2",
-    //           path: "/msgsend",
-    //           type: ""
-    //         }
-    //       ]
-    //     }
-    //   ];
-    // }
+    return self.menu;
   },
   mounted() {},
   methods: {
     changeMenu(active) {
-      console.log("router::::::::::", active);
       this.$router.push({ path: active });
     }
   },
