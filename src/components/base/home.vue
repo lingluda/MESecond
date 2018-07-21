@@ -34,17 +34,16 @@
 </template>
 
 <script>
-  import sidebar from "../base/sidebar.vue";
-  import navbar from "../base/navbar.vue";
+import sidebar from "../base/sidebar.vue";
+import navbar from "../base/navbar.vue";
 
-  export default {
-    components: {
-      sidebar,
-      navbar
-    }
-  };
+export default {
+  components: {
+    sidebar,
+    navbar
+  }
+};
 </script>
 
 <style scoped>
-
 </style>

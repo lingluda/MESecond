@@ -26,26 +26,26 @@ export default new Router({
         }
       },
       {
-          path: '/dataModelList',
-          name: 'dataModelList',
-          component: resolve => {
-            require(['../components/dataModel/dataModelList.vue'], resolve);
-          }
-        },
+        path: '/dataModelList',
+        name: 'dataModelList',
+        component: resolve => {
+          require(['../components/dataModel/dataModelList.vue'], resolve);
+        }
+      },
       {
-          path: '/dataModelDetail',
-          name: 'dataModelDetail',
-          component: resolve => {
-            require(['../components/dataModel/dataModelDetail.vue'], resolve);
-          }
-        },
-        {
-          path: '/tobaccobase',
-          name: 'tobaccobase',
-          component: resolve => {
-            require(['../components/dic/tobaccoBase.vue'], resolve);
-          }
-        },
+        path: '/dataModelDetail',
+        name: 'dataModelDetail',
+        component: resolve => {
+          require(['../components/dataModel/dataModelDetail.vue'], resolve);
+        }
+      },
+      {
+        path: '/tobaccobase',
+        name: 'tobaccobase',
+        component: resolve => {
+          require(['../components/dic/tobaccoBase.vue'], resolve);
+        }
+      },
       ]
     }
   ]

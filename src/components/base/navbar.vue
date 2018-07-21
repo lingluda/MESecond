@@ -1,17 +1,16 @@
 <template>
   <Menu mode="horizontal" theme="dark" active-name="1" style="hight:100vh;float:right" @on-select="changeMenu">
     <MenuItem name="1">
-      <Icon type="ios-paper"></Icon>
-      内容管理
+    <Icon type="ios-paper"></Icon>
+    内容管理
     </MenuItem>
     <MenuItem name="2">
-      <Icon type="ios-people"></Icon>
-      用户管理
+    <Icon type="ios-people"></Icon>
+    用户管理
     </MenuItem>
-
     <MenuItem name="4">
-      <Icon type="settings"></Icon>
-      综合设置
+    <Icon type="settings"></Icon>
+    综合设置
     </MenuItem>
     <Submenu name="3">
       <template slot="title">
@@ -27,22 +26,17 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-
-      };
-    },
-    methods: {
-      changeMenu(active) {
-        this.bus.$emit('toChangeTitle', active);
-        console.log('navbar:', this.menu)
-
-      }
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    changeMenu(active) {
+      this.bus.$emit("toChangeTitle", active);
     }
-  };
+  }
+};
 </script>
 
 <style scoped>
-
 </style>
