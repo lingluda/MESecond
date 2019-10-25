@@ -1,116 +1,157 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+  <div>
+    <a-input-search style="width: 200px;" placeholder="输入搜索内容" enterButton></a-input-search>
+    <a-button type="link" class="editable-add-btn" @click="handleEdit">编辑</a-button>
+    <a-button type="link" class="editable-add-btn" @click="handleAdd">新增</a-button>
+    <a-button type="link"  @click="handleSave">保存</a-button>
+    <a-table bordered :dataSource="dataSource" :columns="columns">
+      <template slot="name" slot-scope="text, record">
+        <editable-cell :editable="editable" :text="text" @change="onCellChange(record.key, 'name', $event)"/>
+      </template>
+<!--
+
+      <template slot="age" slot-scope="text, record">
+        <editable-cell :editable="editable" :text="text" @change="onCellChange(record.key, 'age', $event)"/>
+      </template>
+
+
+      <template slot="address" slot-scope="text, record">
+        <editable-cell :editable="editable" :text="text" @change="onCellChange(record.key, 'address', $event)"/>
+      </template>
+-->
+
+      <template slot="operation" slot-scope="text, record">
+        <a-popconfirm
+          v-if="dataSource.length"
+          title="Sure to delete?"
+          @confirm="() => onDelete(record.key)">
+          <a href="javascript:;">Delete</a>
+        </a-popconfirm>
+      </template>
+    </a-table>
   </div>
 </template>
-
 <script>
+  import EditableCell from './EditableCell'
+  /*
+  * EditableCell Code https://github.com/vueComponent/ant-design-vue/blob/master/components/table/demo/EditableCell.vue
+  */
   export default {
-    name: 'HelloWorld',
-    data() {
+    components: {
+      EditableCell,
+    },
+    data () {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        editable:false,
+        dataSource: [{
+          key: '0',
+          name: 'Edward King 0',
+          age: '32',
+          address: 'London, Park Lane no. 0',
+        }, {
+          key: '1',
+          name: 'Edward King 1',
+          age: '32',
+          address: 'London, Park Lane no. 1',
+        }],
+        count: 2,
+        columns: [{
+          title: 'name',
+          dataIndex: 'name',
+          width: '30%',
+          scopedSlots: { customRender: 'name' },
+        }, {
+          title: 'age',
+          dataIndex: 'age',
+          scopedSlots: { customRender: 'age' },
+        }, {
+          title: 'address',
+          dataIndex: 'address',
+          scopedSlots: { customRender: 'address' },
+        }, {
+          title: 'operation',
+          dataIndex: 'operation',
+          scopedSlots: { customRender: 'operation' },
+        }],
       }
-    }
+    },
+    methods: {
+      handleSave(){
+        console.log(this.dataSource)
+        this.editable = false
+      },
+      handleEdit(){
+        this.editable = true
+      },
+      onCellChange (key, dataIndex, value) {
+        console.log(value)
+        const dataSource = [...this.dataSource]
+        const target = dataSource.find(item => item.key === key)
+        if (target) {
+          target[dataIndex] = value
+          this.dataSource = dataSource
+        }
+      },
+      onDelete (key) {
+        const dataSource = [...this.dataSource]
+        this.dataSource = dataSource.filter(item => item.key !== key)
+      },
+      handleAdd () {
+        this.editable = true
+        const { count, dataSource } = this
+        const newData = {
+          key: count,
+          name: ``,
+          age: ``,
+          address: ``,
+        }
+        this.dataSource = [...dataSource, newData]
+        this.count = count + 1
+      },
+    },
   }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  h1, h2 {
-    font-weight: normal;
+<style>
+  .editable-cell {
+    position: relative;
   }
 
-  ul {
-    list-style-type: none;
-    padding: 0;
+  .editable-cell-input-wrapper,
+  .editable-cell-text-wrapper {
+    padding-right: 24px;
   }
 
-  li {
+  .editable-cell-text-wrapper {
+    padding: 5px 24px 5px 5px;
+  }
+
+  .editable-cell-icon,
+  .editable-cell-icon-check {
+    position: absolute;
+    right: 0;
+    width: 20px;
+    cursor: pointer;
+  }
+
+  .editable-cell-icon {
+    line-height: 18px;
+    display: none;
+  }
+
+  .editable-cell-icon-check {
+    line-height: 28px;
+  }
+
+  .editable-cell:hover .editable-cell-icon {
     display: inline-block;
-    margin: 0 10px;
   }
 
-  a {
-    color: #42b983;
+  .editable-cell-icon:hover,
+  .editable-cell-icon-check:hover {
+    color: #108ee9;
+  }
+
+  .editable-add-btn {
+    margin-bottom: 8px;
   }
 </style>
