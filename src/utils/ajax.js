@@ -28,10 +28,16 @@ ajax.get = function (url, data, callback) {
   })
 }
 //时间转换
-ajax.gmt2str=function(time){
+ajax.gmt2strs=function(time){
   let date = new Date(time)
   return date.format('yyyy-MM-dd hh:mm:ss')
 }
+//时间转换
+ajax.gmt2str=function(time){
+  let date = new Date(time)
+  return date.format('yyyy-MM-dd')
+}
+
 function encodeUrl(obj) {
 
   let url = '';

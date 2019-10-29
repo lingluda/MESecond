@@ -1,5 +1,5 @@
 <template>
-  <a-locale-provider :locale="locale" style="padding: 15px">
+  <a-locale-provider :locale="locale">
     <router-view/>
   </a-locale-provider>
 </template>

@@ -16,16 +16,31 @@ export default new Router({
       path: '/',
       name: 'home',
       component: resolve => {
-        require(['../components/sugarTobacc.vue'], resolve);
+        // require(['../page/base/home.vue'], resolve);
+        require(['../page/base/homes.vue'], resolve);
       },
       children: [
-       /* {
-          path: '/msgsend',
+        {
+          path: '/',
           name: 'msgsend',
           component: resolve => {
-            require(['../components/msgsend/msgSend.vue'], resolve);
+            require(['../components/sugarTobacc.vue'], resolve);
           }
-        },*/
+        },
+        {
+          path: '/spinning',
+          name: 'msgsend',
+          component: resolve => {
+            require(['../page/temperature_c/spinning_workshop.vue'], resolve);
+          }
+        },
+        {
+          path: '/wraps',
+          name: 'msgsend',
+          component: resolve => {
+            require(['../page/temperature_c/wraps_workshop.vue'], resolve);
+          }
+        },
       ]
     }
   ]
