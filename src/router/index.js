@@ -24,7 +24,7 @@ export default new Router({
           path: '/',
           name: 'msgsend',
           component: resolve => {
-            require(['../components/sugarTobacc.vue'], resolve);
+            require(['@/page/OpenCloseTable/index.vue'], resolve);
           }
         },
         {

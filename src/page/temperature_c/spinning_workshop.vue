@@ -1,11 +1,26 @@
 <template>
   <div class="main">
-    <div class="main_list1">
-        <list_components style="float: right"></list_components>
-    </div>
-    <div style="margin-left: 14ch;border: 1px solid yellow;width: 48ch">1</div>
-    <div style="margin-left: 1ch;border: 1px solid yellow;width: 40ch">1</div>
-    <div style="margin-left: 1ch;border: 2px solid yellow;width: 47ch">1</div>
+    <list_components style="position: absolute;top: 14%;left: 8%"></list_components>
+    <list_components style="position: absolute;top: 41%;left: 6%"></list_components>
+    <list_components style="position: absolute;top: 55%;left: 6%"></list_components>
+    <list_components style="position: absolute;top: 69%;left: 6%"></list_components>
+    <list_components style="position: absolute;top: 83%;left: 6%"></list_components>
+
+    <list_components style="position: absolute;top: 5%;left: 36%"></list_components>
+    <list_components style="position: absolute;top: 22%;left: 34%"></list_components>
+    <list_components style="position: absolute;top: 37%;left: 34%"></list_components>
+    <list_components style="position: absolute;top: 55%;left: 36%"></list_components>
+    <list_components style="position: absolute;top: 71%;left: 36%"></list_components>
+    <list_components style="position: absolute;top: 87%;left: 36%"></list_components>
+
+    <list_components style="position: absolute;top: 21%;left: 60%"></list_components>
+    <list_components style="position: absolute;top: 35%;left: 60%"></list_components>
+    <list_components style="position: absolute;top: 55%;left: 57%"></list_components>
+    <list_components style="position: absolute;top: 78%;left: 57%"></list_components>
+
+    <list_components style="position: absolute;top: 31%;left: 76%"></list_components>
+    <list_components style="position: absolute;top: 62%;left: 78%"></list_components>
+    <list_components style="position: absolute;top: 78%;left: 78%"></list_components>
   </div>
 </template>
 
@@ -19,13 +34,13 @@
 
 <style lang="less" scoped>
   .main {
-    display: flex;
-    background-image: url('http://10.162.80.8:90/Upload/UploadModel/images/%E5%8C%BA%E5%9F%9F%E6%B8%A9%E6%B9%BF%E5%BA%A6%E6%98%8E%E7%BB%86%E7%BA%AF%E5%9B%BE%E6%A0%87/u423.png');
+    position: relative;
+    background-image: url('http://10.162.80.8:90/Upload/UploadModel/images/%E5%8D%B7%E5%8C%85%E8%BD%A6%E9%97%B4%E6%B8%A9%E6%B9%BF%E5%BA%A6/u0.png');
     height: 100vh;
     background-size: 100% 100%;
-    &_list1{
+  /*  &_list1{
       margin-left: 10ch;border: 1px solid yellow;width: 52ch;
 
-    }
+    }*/
   }
 </style>

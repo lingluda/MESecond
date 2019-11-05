@@ -32,11 +32,10 @@
 </script>
 <style lang="less">
   th.column-money {
-    background-color: #a8cee8 !important;
+    //background-color: #a8cee8 !important;
     text-align: center !important;
     font-weight: 550 !important;
   }
-
   .ant-table-small > .ant-table-content > .ant-table-body {
     margin: 0 !important;
   }
